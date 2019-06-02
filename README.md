@@ -9,7 +9,7 @@ go get github.com/gazelle0130/httpstatus
 You can use httpstatus to display http status code.
 
 ```
-# aaa
+# show all http status codes
 httpstatus all
 100 : Continue
 101 : Switching Protocols
