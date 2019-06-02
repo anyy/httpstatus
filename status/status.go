@@ -1,3 +1,6 @@
+package status
+
+var JsonStr = `
 [
   {"code": 100, "message": "Continue"},
   {"code": 101, "message": "Switching Protocols"},
@@ -54,3 +57,4 @@
   {"code": 509, "message": "Bandwidth Limit Exceeded"},
   {"code": 510, "message": "Not Extended"}
 ]
+`

@@ -3,9 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/gazelle0130/httpstatus/status"
 	"github.com/urfave/cli"
 	"golang.org/x/xerrors"
-	"io/ioutil"
 	"log"
 	"os"
 	"strconv"
@@ -25,29 +25,26 @@ func main() {
 	app.Version = "1.0.0"
 
 	app.Before = func(c *cli.Context) error {
-		bytes, err := ioutil.ReadFile("status.json")
-		if err != nil {
-			return err
-		}
-		if err = json.Unmarshal(bytes, &statuses); err != nil {
+		bytes := ([]byte)(status.JsonStr)
+		if err := json.Unmarshal(bytes, &statuses); err != nil {
 			return err
 		}
 		return nil
 	}
 
-	app.Commands = []cli.Command {
+	app.Commands = []cli.Command{
 		{
-			Name: "all",
+			Name:    "all",
 			Aliases: []string{"l"},
-			Usage: "print all of http status code",
+			Usage:   "print all of http status code",
 			Action: func(c *cli.Context) error {
 				return all()
 			},
 		},
 		{
-			Name: "find",
+			Name:    "find",
 			Aliases: []string{"s"},
-			Usage: "find by code",
+			Usage:   "find by code",
 			Action: func(c *cli.Context) error {
 				return find(c.Args().First())
 			},
