@@ -12,8 +12,8 @@ import (
 )
 
 type StatusCode struct {
-	Code        int    `json:"code"`
-	Explanation string `json:"message"`
+	Code int    `json:"code"`
+	Name string `json:"name"`
 }
 
 var statuses []StatusCode
@@ -61,7 +61,7 @@ func find(code string) (err error) {
 	c, _ := strconv.Atoi(code)
 	for _, s := range statuses {
 		if c == s.Code {
-			fmt.Printf("%d : %s\n", s.Code, s.Explanation)
+			fmt.Printf("%d : %s\n", s.Code, s.Name)
 			return
 		}
 	}
@@ -70,7 +70,7 @@ func find(code string) (err error) {
 
 func all() (err error) {
 	for _, s := range statuses {
-		fmt.Printf("%d : %s\n", s.Code, s.Explanation)
+		fmt.Printf("%d : %s\n", s.Code, s.Name)
 	}
 	return
 }
